@@ -27,7 +27,7 @@ const App = () => {
     )
   }
 
-  const handleAddToCart = (clickedItem: CartItemType) => {
+  function handleAddToCart(clickedItem: CartItemType) {
     return (
       setCartItems(previousState => {
         //1. Is the item already added in the cart? // se já tiver um, vai adicionar mais um item
@@ -47,19 +47,21 @@ const App = () => {
         return [...previousState, { ...clickedItem, amount: 1 }]
       })
     )
-  }
+  };
 
   function handleRemoveFromCart(id: number) {
-    setCartItems(previousState => ( //valor antigo
-      previousState.reduce((acumulator, item) => { //damos um reduce no valor antigo
-        if (item.id === id) { //se o id do item for igual ao (id:number) da função handleRemoveFromCart então retorna
-          if (item.amount === 1) return acumulator; //se o valor for 1, retorna o acumulador e para aqui, deletando o item do array
-          return [...acumulator, { ...item, amount: item.amount - 1 }]; // do contrario dou um spread(...) no item e tiro um -1 do valor total
-        } else {
-          return [...acumulator, item] // e então retornamos o valor do array
-        }
-      }, [] as CartItemType[]) // o acumulador começa com um array[] vazio, to tipo CartItemType
-    ))
+    return (
+      setCartItems(previousState => ( //valor antigo
+        previousState.reduce((acumulator, item) => { //damos um reduce no valor antigo
+          if (item.id === id) { //se o id do item for igual ao (id:number) da função handleRemoveFromCart então retorna
+            if (item.amount === 1) return acumulator; //se o valor for 1, retorna o acumulador e para aqui, deletando o item do array
+            return [...acumulator, { ...item, amount: item.amount - 1 }]; // do contrario dou um spread(...) no item e tiro um -1 do valor total
+          } else {
+            return [...acumulator, item] // e então retornamos o valor do array
+          }
+        }, [] as CartItemType[]) // o acumulador começa com um array[] vazio, to tipo CartItemType
+      ))
+    )
   };
 
   if (isLoading) return <LinearProgress />; //barra de loading no topo
