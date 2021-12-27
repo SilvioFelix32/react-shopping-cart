@@ -1,4 +1,4 @@
-## Simple Project from a shopping cart using 
+## Build a Shopping Cart with React and TypeScript
 
 <p align="center">
    Manage your Shopping Cart. Project developed from freeCodeCamp.org
